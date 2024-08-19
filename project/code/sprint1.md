@@ -1,0 +1,35 @@
+@startuml 
+
+  
+
+skin rose 
+
+  
+
+:Aluno: 
+
+:Secretaria da universidade: as Uni 
+
+:Professor: 
+
+  
+
+Aluno --> (Matricular em disciplina) 
+
+Aluno --> (Cancelar matricula) 
+
+  
+
+Professor --> (Visualizar alunos matriculados) 
+
+  
+
+Uni --> (Gerar curriculo) 
+
+Uni --> (Notificar aluno sobre cobranca) 
+
+  
+
+  
+
+@enduml 
