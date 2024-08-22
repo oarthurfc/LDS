@@ -9,17 +9,24 @@ skin rose
 :Professor: 
 
 
-Aluno --> (Matricular em disciplina) 
+Aluno --> (Visualizar disciplinas) 
 
-Aluno --> (Cancelar matricula) 
+(Visualizar disciplinas) <. (Matricular em disciplina) : extends
 
-  
+(Visualizar disciplinas) <. (Cancelar matricula na disciplina) : extends
+
+(Cancelar matricula na disciplina) .> (Notificar sistema de cobranca) : include
+
+(Matricular em disciplina) .> (Notificar sistema de cobranca) : include
+
+
+
 Professor --> (Visualizar alunos matriculados) 
   
 
 Uni --> (Gerar curriculo) 
 
-Uni --> (Notificar aluno sobre cobranca) 
+
 
   
 
