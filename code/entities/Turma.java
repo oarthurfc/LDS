@@ -6,6 +6,7 @@ import java.util.List;
 public class Turma {
     private int numero;
     private Disciplina disciplina;
+    private Professor professor;
     private List<Aluno> alunos = new ArrayList<>();
 
     public Turma(int numero, Disciplina disciplina) {
