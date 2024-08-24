@@ -15,12 +15,7 @@ public class Professor {
     }
 
     public void visualizarAlunos() {
-        for (Turma turma : turmas) {
-            System.out.println("Alunos na turma " + turma.getNumero() + ":");
-            for (Aluno aluno : turma.getAlunos()) {
-                System.out.println(aluno.getNome());
-            }
-        }
+        //Lógica para visualizar os alunos de cada turma
     }
 
     // Getters e Setters

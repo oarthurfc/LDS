@@ -12,11 +12,11 @@ public class Aluno {
     }
 
     public void matricularEmTurma(Turma turma) {
-        turma.matricularAluno(this);
+        // Lógica para matricular aluno à turma
     }
 
     public void cancelarMatriculaEmTurma(Turma turma) {
-        turma.cancelarMatricula(this);
+        // Lógica para cancelar matricula no aluno na turma
     }
 
     // Getters e Setters
