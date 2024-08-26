@@ -1,48 +1,58 @@
 @startuml
 
-class Universidade
-Class Curso
-Class Disciplina
-Class Turma
-class Professor
-Class Aluno
+class Universidade {
+  -nome: String
+  -endereco: String
+  -CNPJ: String
+  +gerarCurriculo()
+}
 
+class Curso {
+  -nome: String
+  -numCreditos: int
+  -disciplinas: List<Disciplina>
+  -professores: List<Professor>
+  -alunos: List<Aluno>
+  +adicionarDisciplina(disciplina: Disciplina)
+  +removerDisciplina(disciplina: Disciplina)
+}
+
+class Disciplina {
+  -nome: String
+  -curso: Curso
+  +ativarDisciplina()
+  +cancelarDisciplina()
+}
+
+class Turma {
+  -numero: int
+  -disciplina: Disciplina
+  -alunos: List<Aluno>
+  +matricularAluno(aluno: Aluno)
+  +cancelarMatricula(aluno: Aluno)
+  +verificarVagas()
+  +verificarAtivacao()
+}
+
+class Professor {
+  -matricula: String
+  -nome: String
+  -CPF: String
+  +visualizarAlunos()
+}
+
+class Aluno {
+  -matricula: String
+  -nome: String  
+  -CPF: String 
+  +matricularEmTurma(turma: Turma)
+  +cancelarMatriculaEmTurma(turma: Turma)
+}
 
 Universidade "1" -- "0..N" Curso
-Disciplina "1..N" o-- "1..N" Curso
+Curso "1..N" o-- "1..N" Disciplina
 Disciplina "1" --o "1..N" Turma
 Professor "1" -- "0..N" Turma
 Aluno "3..60" -- "4..6" Turma
-
-Universidade : -nome:String
-Universidade : -endereco:String
-Universidade : -CNPJ:String
-Universidade : -disciplinas:List<Disciplina>
-Universidade : -professores:List
-Universidade : -alunos:List
-Universidade : +gerarCurriculo()
-
-Curso : -nome:String
-Curso : -numCreditos:Int
-Curso : -disciplinas:List<disciplinas>
-
-Disciplina : -nome:String
-Disciplina : curso:Curso
-
-Turma : -numero:Int
-Turma : -disciplina:Disciplina
-Turma : -alunos: List<Aluno>
-
-Professor : -matricula:String
-Professor : -nome:String
-Professor : -CPF:String
-Professor : +visualizarAluno()
-
-Aluno : -matricula:String
-Aluno : -nome:String  
-Aluno : -CPF:String 
-Aluno : +matricular()
-Aluno : +cancelarMatricula()
-
 
 @enduml
