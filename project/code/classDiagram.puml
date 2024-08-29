@@ -4,55 +4,58 @@ class Universidade {
   -nome: String
   -endereco: String
   -CNPJ: String
-  +gerarCurriculo()
+  -cursos: List<Curso>
+  +gerarCurriculo(): String
+  +adicionarCurso(): void
 }
 
 class Curso {
   -nome: String
   -numCreditos: int
   -disciplinas: List<Disciplina>
-  -professores: List<Professor>
-  -alunos: List<Aluno>
-  +adicionarDisciplina(disciplina: Disciplina)
-  +removerDisciplina(disciplina: Disciplina)
+  +adicionarDisciplina(disciplina: Disciplina): void
+  +removerDisciplina(disciplina: Disciplina): void
 }
 
 class Disciplina {
   -nome: String
-  -curso: Curso
-  +ativarDisciplina()
-  +cancelarDisciplina()
+  -turmas: List<Turma>
+  -ativa: Boolean
+  +ativarDisciplina(): void
+  +verificarQntdAlunos(): int
+  +desativarDisciplina(): void
 }
 
 class Turma {
   -numero: int
+  -ano: Date
   -disciplina: Disciplina
+  -professor: Professor
   -alunos: List<Aluno>
-  +matricularAluno(aluno: Aluno)
-  +cancelarMatricula(aluno: Aluno)
-  +verificarVagas()
-  +verificarAtivacao()
+  +matricularAluno(aluno: Aluno): void
+  +cancelarMatricula(aluno: Aluno): void
 }
 
 class Professor {
   -matricula: String
   -nome: String
   -CPF: String
-  +visualizarAlunos()
+  -turmas: List<Turma>
+  +visualizarAlunos(): List<Aluno>
 }
 
 class Aluno {
   -matricula: String
   -nome: String  
   -CPF: String 
-  +matricularEmTurma(turma: Turma)
-  +cancelarMatriculaEmTurma(turma: Turma)
+  -turmas: List<Turma>
+  +visualizarTurmas(): List<Turma>
 }
 
 Universidade "1" -- "0..N" Curso
 Curso "1..N" o-- "1..N" Disciplina
 Disciplina "1" --o "1..N" Turma
 Professor "1" -- "0..N" Turma
-Aluno "3..60" -- "4..6" Turma
+Aluno "1..60" -- "4..6" Turma
 
 @enduml
