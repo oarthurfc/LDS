@@ -1,20 +1,37 @@
 package code.entities;
 
-public class Disciplina {
+import java.io.Serializable;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class Disciplina implements Serializable {
     private String nome;
     private Curso curso;
+    private List<Turma> turmas;
+    private boolean ativa;
 
     public Disciplina(String nome, Curso curso) {
         this.nome = nome;
         this.curso = curso;
+        this.ativa = false;
+        this.turmas = new ArrayList<>();
     }
 
     public void ativarDisciplina() {
-        // Lógica para ativar a disciplina se houver alunos suficientes
+        this.ativa = true;
+    }
+    
+    public int verificarQntdAlunos() {
+        int qntAlunos = 0;
+        for (Turma turma : this.turmas) {
+            qntAlunos += turma.getAlunos().size();
+        }
+        return qntAlunos;
     }
 
-    public void cancelarDisciplina() {
-        // Lógica para cancelar a disciplina se não houver alunos suficientes
+    public void desativarDisciplina() {
+        this.ativa = false;
     }
 
     // Getters e Setters

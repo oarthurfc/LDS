@@ -1,41 +1,35 @@
 package code.entities;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Turma {
+public class Turma implements Serializable{
     private int numero;
     private Disciplina disciplina;
     private Professor professor;
+
     private List<Aluno> alunos = new ArrayList<>();
 
-    public Turma(int numero, Disciplina disciplina) {
+    public Turma(int numero, Disciplina disciplina, Professor professor) {
         this.numero = numero;
         this.disciplina = disciplina;
+        this.professor = professor;
     }
 
     public void matricularAluno(Aluno aluno) {
-        // Lógica para matricular alunos
+        if (disciplina.verificarQntdAlunos() < 60) {
+            alunos.add(aluno);
+        } else {
+            System.out.println("Turma cheia. Não é possível matricular mais alunos.");
+        }    
     }
 
     public void cancelarMatricula(Aluno aluno) {
-        // Lógica para cancelar matricula dos alunos
+        alunos.remove(aluno);
     }
 
-    public boolean verificarVagas() {
-        // Lógica para verificar se existem vagas disponíveis para mais alunos
-        return true;
-    }
-
-    public void verificarAtivacao() {
-        // Lógica para verificar se existem alunos suficientes para iniciarem a turma
-
-    }
-
-    private void cancelarDisciplina() {
-        // Método para cancelar a disciplina
-    }
-    
     // Getters e Setters
     public int getNumero() {
         return numero;
@@ -59,5 +53,13 @@ public class Turma {
 
     public void setAlunos(List<Aluno> alunos) {
         this.alunos = alunos;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 }

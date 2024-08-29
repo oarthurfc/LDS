@@ -1,8 +1,10 @@
 package code.entities;
 
+import java.io.Serializable;
+
 import java.util.List;
 
-public class Professor {
+public class Professor implements Serializable{
     private String matricula;
     private String nome;
     private String CPF;
@@ -15,7 +17,10 @@ public class Professor {
     }
 
     public void visualizarAlunos() {
-        //Lógica para visualizar os alunos de cada turma
+        for (Turma turma : turmas) {
+            System.out.println("TURMA " + turma + "/n");
+            System.out.println(turma.getAlunos());
+        }
     }
 
     // Getters e Setters

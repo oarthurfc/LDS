@@ -1,25 +1,30 @@
 package code.entities;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class Curso {
+import java.util.List;
+import java.util.ArrayList;
+
+
+public class Curso implements Serializable{
     private String nome;
     private int numCreditos;
     private List<Disciplina> disciplinas;
-    private List<Professor> professores;
-    private List<Aluno> alunos;
 
     public Curso(String nome, int numCreditos) {
         this.nome = nome;
         this.numCreditos = numCreditos;
+        this.disciplinas = new ArrayList<>();
     }
 
     public void adicionarDisciplina(Disciplina disciplina) {
-        // Lógica para adicionar disciplina ao curso
+        disciplinas.add(disciplina);
+        System.out.println("Disciplina " + disciplina.getNome() + " adicionada com sucesso");
     }
 
     public void removerDisciplina(Disciplina disciplina) {
-        // Lógica para remover disciplina do curso
+        disciplinas.remove(disciplina);
+        System.out.println("Disciplina "+ disciplina.getNome() + " removida com sucesso");
     }
 
     //Getters and Setters
@@ -46,21 +51,4 @@ public class Curso {
     public void setDisciplinas(List<Disciplina> disciplinas) {
         this.disciplinas = disciplinas;
     }
-
-    public List<Professor> getProfessores() {
-        return professores;
-    }
-
-    public void setProfessores(List<Professor> professores) {
-        this.professores = professores;
-    }
-
-    public List<Aluno> getAlunos() {
-        return alunos;
-    }
-
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
-    }
-
 }

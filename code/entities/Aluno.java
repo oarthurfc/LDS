@@ -1,22 +1,22 @@
 package code.entities;
 
-public class Aluno {
+import java.io.Serializable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Aluno implements Serializable{
     private String matricula;
     private String nome;
     private String CPF;
+    private List<Turma> turmas;
 
     public Aluno(String matricula, String nome, String CPF) {
         this.matricula = matricula;
         this.nome = nome;
         this.CPF = CPF;
-    }
-
-    public void matricularEmTurma(Turma turma) {
-        // Lógica para matricular aluno à turma
-    }
-
-    public void cancelarMatriculaEmTurma(Turma turma) {
-        // Lógica para cancelar matricula no aluno na turma
+        this.turmas = new ArrayList<Turma>();
     }
 
     // Getters e Setters
@@ -42,5 +42,9 @@ public class Aluno {
 
     public void setCPF(String cPF) {
         CPF = cPF;
+    }
+    
+    public List<Turma> visualizarTurmas() {
+        return turmas;
     }
 }

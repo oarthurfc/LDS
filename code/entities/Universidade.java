@@ -1,8 +1,11 @@
 package code.entities;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class Universidade {
+import java.util.List;
+import java.util.ArrayList;
+
+public class Universidade implements Serializable {
     private String nome;
     private String endereco;
     private String CNPJ;
@@ -12,6 +15,11 @@ public class Universidade {
         this.nome = nome;
         this.endereco = endereco;
         this.CNPJ = CNPJ;
+        this.cursos = new ArrayList<>();
+    }
+
+    public void adicionarCurso(Curso curso) {
+        this.cursos.add(curso);
     }
 
     public void gerarCurriculo() {
