@@ -1,7 +1,7 @@
 package code.entities;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Professor implements Serializable{
@@ -14,6 +14,7 @@ public class Professor implements Serializable{
         this.matricula = matricula;
         this.nome = nome;
         this.CPF = CPF;
+        this.turmas = new ArrayList<>();
     }
 
     public void visualizarAlunos() {
@@ -55,6 +56,8 @@ public class Professor implements Serializable{
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
     }
+
+   
 
 }
 
