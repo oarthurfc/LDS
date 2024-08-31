@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Professor implements Serializable{
-    private String matricula;
+public class Professor implements Serializable {
+   private String matricula;
     private String nome;
     private String CPF;
     private List<Turma> turmas;
@@ -17,47 +17,34 @@ public class Professor implements Serializable{
         this.turmas = new ArrayList<>();
     }
 
-    public void visualizarAlunos() {
+    public List<Aluno> visualizarAlunos() {
+        List<Aluno> alunos = new ArrayList<>();
         for (Turma turma : turmas) {
-            System.out.println("TURMA " + turma + "/n");
-            System.out.println(turma.getAlunos());
+            alunos.addAll(turma.getAlunos());
         }
-    }
-
-    // Getters e Setters
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+        return alunos;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(String cPF) {
-        CPF = cPF;
-    }
+	public Object getMatricula() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getMatricula'");
+	}
 
     public List<Turma> getTurmas() {
         return turmas;
     }
 
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
+    public void adicionarTurma(Turma turma) {
+        turmas.add(turma);
     }
 
-   
+    public void add(Professor professor) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    }
 
 }
-

@@ -1,12 +1,10 @@
 package code.entities;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Aluno implements Serializable{
+public class Aluno implements Serializable {
     private String matricula;
     private String nome;
     private String CPF;
@@ -14,9 +12,9 @@ public class Aluno implements Serializable{
 
     public Aluno(String matricula, String nome, String CPF) {
         this.matricula = matricula;
-        this.nome = nome;
+        this.nome = nome.trim();  // Remover espaços em branco
         this.CPF = CPF;
-        this.turmas = new ArrayList<Turma>();
+        this.turmas = new ArrayList<>();
     }
 
     // Getters e Setters
@@ -33,18 +31,24 @@ public class Aluno implements Serializable{
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim();  // Remover espaços em branco
     }
 
     public String getCPF() {
         return CPF;
     }
 
-    public void setCPF(String cPF) {
-        CPF = cPF;
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
     }
-    
-    public List<Turma> visualizarTurmas() {
+
+    public List<Turma> getTurmas() {
         return turmas;
     }
+
+    public void adicionarTurma(Turma turma) {
+        turmas.add(turma);
+    }
+    
+    
 }
