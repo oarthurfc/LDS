@@ -47,7 +47,7 @@ public class App {
         disciplina2.adicionarTurma(turma2);
         
         turma1.matricularAluno(aluno1);
-        turma2.matricularAluno(aluno1);
+        turma2.matricularAluno(aluno2);
         turma3.matricularAluno(aluno1);
 
 

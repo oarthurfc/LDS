@@ -12,7 +12,7 @@ public class Disciplina implements Serializable {
     public Disciplina(String nome) {
         this.nome = nome;
         this.turmas = new ArrayList<>();
-        this.ativa = false;
+        this.ativa = true;
     }
 
     public String getNome() {
