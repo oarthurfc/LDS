@@ -29,6 +29,10 @@ public class Disciplina implements Serializable {
         System.out.println("Disciplina " + nome + " desativada.");
     }
 
+    public boolean isAtiva() {
+        return ativa;
+    }
+
     public int verificarQntdAlunos() {
         int totalAlunos = 0;
         for (Turma turma : turmas) {

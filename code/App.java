@@ -69,8 +69,8 @@ public class App {
                 case 1: // Secretaria
                     while (true) {
                         System.out.println("1- Gerar Curriculo");
-                        System.out.println("2- Visualizar Cursos");
-                        System.out.println("3- Visualizar Disciplinas");
+                        System.out.println("2- Gerenciar Cursos");
+                        System.out.println("3- Gerenciar Disciplinas");
                         System.out.println("0- Voltar");
 
                         int opcaoSecretaria = scanner.nextInt();
@@ -138,7 +138,8 @@ public class App {
                                     while (true) {
                                         System.out.println("1- Adicionar Disciplina");
                                         System.out.println("2- Remover Disciplina");
-                                        System.out.println("3- Ativar/Desativar Disciplina");
+                                        System.out.println("3- Ativar Disciplina");
+                                        System.out.println("4- Desativar Disciplina");
                                         System.out.println("0- Voltar");
 
                                         int opcaoDisciplina = scanner.nextInt();
@@ -165,20 +166,24 @@ public class App {
                                                 break;
 
                                             case 3:
-                                                System.out.print("Digite o nome da disciplina para ativar/desativar: ");
+                                                System.out.print("Digite o nome da disciplina para ativada: ");
                                                 scanner.nextLine(); // Consome a linha
-                                                String disciplinaNome = scanner.nextLine();
-                                                Disciplina disciplina = curso.getDisciplinas().stream()
-                                                        .filter(d -> d.getNome().equals(disciplinaNome))
+                                                String ativarDisciplinaNome = scanner.nextLine();
+                                                Disciplina disciplinaA = curso.getDisciplinas().stream()
+                                                        .filter(d -> d.getNome().equals(ativarDisciplinaNome))
                                                         .findFirst()
                                                         .orElse(null);
-                                                if (disciplina != null) {
-                                                    if (disciplina.verificarQntdAlunos() > 0) {
-                                                        disciplina.desativarDisciplina();
-                                                    } else {
-                                                        disciplina.ativarDisciplina();
-                                                    }
-                                                }
+                                                disciplinaA.ativarDisciplina();
+                                                break;
+                                            case 4:
+                                                System.out.print("Digite o nome da disciplina para ser desativada: ");
+                                                scanner.nextLine(); // Consome a linha
+                                                String desativarDisciplinaNome = scanner.nextLine();
+                                                Disciplina disciplinaD = curso.getDisciplinas().stream()
+                                                        .filter(d -> d.getNome().equals(desativarDisciplinaNome))
+                                                        .findFirst()
+                                                        .orElse(null);
+                                                disciplinaD.desativarDisciplina();
                                                 break;
                                         }
                                     }

@@ -24,9 +24,13 @@ public class Turma implements Serializable {
     }
 
     public void matricularAluno(Aluno aluno) {
-        alunos.add(aluno);
-        aluno.getTurmas().add(this);
-        System.out.println("Aluno " + aluno.getNome() + " matriculado na turma " + numero + ".");
+        if (disciplina.isAtiva()) {            
+            alunos.add(aluno);
+            aluno.getTurmas().add(this);
+            System.out.println("Aluno " + aluno.getNome() + " matriculado na turma " + numero + ".");
+        } else {
+            System.out.println("Não foi possível realizar a matrícula nessa disciplina, pois ela se encontra desativada");
+        }
     }
 
     public void cancelarMatricula(Aluno aluno) {
