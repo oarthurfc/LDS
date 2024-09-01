@@ -21,6 +21,7 @@ class Disciplina {
   -nome: String
   -turmas: List<Turma>
   -ativa: Boolean
+  +adicionarTurma(turma: Turma): void
   +ativarDisciplina(): void
   +verificarQntdAlunos(): int
   +desativarDisciplina(): void

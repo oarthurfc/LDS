@@ -32,7 +32,7 @@ public class Turma implements Serializable {
     public void cancelarMatricula(Aluno aluno) {
         alunos.remove(aluno);
         aluno.getTurmas().remove(this);
-        System.out.println("Aluno " + aluno.getNome() + " desmatriculado da turma " + numero + ".");
+        System.out.println("Aluno " + aluno.getNome() + " desmatriculado com successo da turma " + numero + " de " + disciplina.getNome() + ".");
     }
 
     public Disciplina getDisciplina() {

@@ -9,54 +9,40 @@ public class Universidade implements Serializable {
     private String endereco;
     private String CNPJ;
     private List<Curso> cursos;
-    private List<Aluno> alunos;
-    private List<Professor> professor;
 
     public Universidade(String nome, String endereco, String CNPJ) {
         this.nome = nome;
         this.endereco = endereco;
         this.CNPJ = CNPJ;
         this.cursos = new ArrayList<>();
-        this.alunos = new ArrayList<>();
-        this.professor = new ArrayList<>();
     }
 
     public String gerarCurriculo() {
         StringBuilder curriculo = new StringBuilder();
-    curriculo.append("Currículo da ").append(nome).append(":\n");
+        curriculo.append("Currículo da ").append(nome).append(":\n");
 
-    for (Curso curso : cursos) {
-        curriculo.append("- Curso: ").append(curso.getNome()).append("\n");
+        for (Curso curso : cursos) {
+            curriculo.append("- Curso: ").append(curso.getNome()).append("\n");
 
-        for (Disciplina disciplina : curso.getDisciplinas()) {
-            curriculo.append("  * Disciplina: ").append(disciplina.getNome()).append("\n");
+            for (Disciplina disciplina : curso.getDisciplinas()) {
+                curriculo.append("  * Disciplina: ").append(disciplina.getNome()).append("\n");
 
-            for (Turma turma : disciplina.getTurmas()) {
-                curriculo.append("    * Turma: ").append(turma.getNumero()).append(" (Ano: ").append(turma.getAno()).append(")\n");
+                for (Turma turma : disciplina.getTurmas()) {
+                    curriculo.append("    * Turma: ").append(turma.getNumero()).append(" (Ano: ").append(turma.getAno()).append(")\n");
 
-                if (turma.getAlunos() != null && !turma.getAlunos().isEmpty()) {
-                    curriculo.append("      - Alunos:\n");
-                    for (Aluno aluno : turma.getAlunos()) {
-                        curriculo.append("        * ").append(aluno.getNome()).append(" (Matrícula: ").append(aluno.getMatricula()).append(")\n");
+                    Professor professor = turma.getProfessor();
+                    if (professor != null) {
+                        curriculo.append("      - Professor: ").append(professor.getNome())
+                                .append(" (Matrícula: ").append(professor.getMatricula()).append(")\n");
+                    } else {
+                        curriculo.append("      - Nenhum professor atribuído.\n");
                     }
-                } else {
-                    curriculo.append("      - Nenhum aluno matriculado.\n");
-                }
-
-                Professor professor = (Professor) turma.getProfessor();
-                if (professor != null) {
-                    curriculo.append("      - Professor: ").append(professor.getNome()).append(" (Matrícula: ").append(professor.getMatricula()).append(")\n");
-                } else {
-                    curriculo.append("      - Nenhum professor atribuído.\n");
                 }
             }
         }
-    }
 
-    return curriculo.toString();
+        return curriculo.toString();
     }
-
-    
 
     public void visualizarCursos() {
         if (cursos.isEmpty()) {
@@ -82,23 +68,43 @@ public class Universidade implements Serializable {
         return cursos;
     }
 
-    public void adicionarAluno(Aluno aluno) {
-        alunos.add(aluno);
-    }
-
-    public List<Aluno> getAlunos() {
-        return alunos;
-    }
-
-
     public Aluno buscarAlunoPorNome(String nomeAluno) {
-        for (Aluno aluno : alunos) {
-            if (aluno.getNome().equalsIgnoreCase(nomeAluno.trim())) { // Comparação sem case sensitive
-                return aluno;
+
+        Aluno alunoP = null;
+
+        for (Curso curso : cursos) {
+            for (Disciplina disciplina : curso.getDisciplinas()) {
+                for (Turma turma : disciplina.getTurmas()) {
+                    // Corrigindo para encontrar o primeiro aluno com o nome desejado
+                    alunoP = turma.getAlunos().stream()
+                            .filter(a -> a.getNome().equals(nomeAluno))
+                            .findFirst()
+                            .orElse(null);
+    
+                    // Caso o aluno seja encontrado, podemos interromper a busca
+                    if (alunoP != null) {
+                        return alunoP;
+                    }
+                }
             }
         }
-        return null;
+
+        return alunoP;
     }
 
-
+    // Método para visualizar os alunos de um professor
+    public List<Aluno> visualizarAlunosDoProfessor(Professor professor) {
+        List<Aluno> alunosDoProfessor = new ArrayList<>();
+        for (Curso curso : cursos) {
+            for (Disciplina disciplina : curso.getDisciplinas()) {
+                for (Turma turma : disciplina.getTurmas()) {
+                    if (turma.getProfessor() != null && turma.getProfessor().equals(professor)) {
+                        alunosDoProfessor.addAll(turma.getAlunos());
+                    }
+                }
+            }
+        }
+        return alunosDoProfessor;
+    }
 }
+
