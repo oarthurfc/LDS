@@ -40,6 +40,10 @@ public class Disciplina implements Serializable {
     public List<Turma> getTurmas() {
         return turmas;
     }
+
+    public void adicionarTurma(Turma turma) {
+        turmas.add(turma);
+    }
     
 
 }
