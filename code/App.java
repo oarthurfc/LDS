@@ -206,6 +206,13 @@ public class App {
                                 break;
                             }
 
+                            else if (opcaoAluno == 1) {
+                                List<Turma> turmasDoAluno = aluno.getTurmas();
+                                System.out.println("Turmas do aluno:");
+                                turmasDoAluno.forEach((turma)-> System.out.println("    -" + turma.getDisciplina().getNome()));
+                                break;
+                            }
+
                             switch (opcaoAluno) {
                                 case 1:
                                     System.out.println("1- Gerenciar Disciplinas");
