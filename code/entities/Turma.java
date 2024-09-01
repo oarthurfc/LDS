@@ -8,27 +8,20 @@ public class Turma implements Serializable {
     private int numero;
     private String ano;
     public Disciplina disciplina;
-    private List<Professor> professor;
+    private Professor professor;
     private List<Aluno> alunos;
 
     public Turma(int numero, String ano, Disciplina disciplina, Professor professor) {
         this.numero = numero;
         this.ano = ano;
         this.disciplina = disciplina;
-        this.professor = new ArrayList<>();
+        this.professor = professor;
         this.alunos = new ArrayList<>();
     }
 
     public List<Aluno> getAlunos() {
         return alunos;
     }
-
-    public void matricularProfessor(Professor professor) {
-        professor.add(professor);
-        professor.getTurmas().add(this);
-        System.out.println("Aluno " + professor.getNome() + " matriculado na turma " + numero + ".");
-    }
-
 
     public void matricularAluno(Aluno aluno) {
         alunos.add(aluno);
@@ -54,13 +47,12 @@ public class Turma implements Serializable {
         return numero;
     }
 
-    public List<Professor> getProfessor() {
+    public Professor getProfessor() {
         return professor;
     }
 
-    public Object getAno() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAno'");
+    public String getAno() {
+        return ano;
     }
 
 
