@@ -29,8 +29,15 @@ public class Curso implements Serializable {
     }
 
     public void removerDisciplina(String nomeDisciplina) {
-        disciplinas.removeIf(disciplina -> disciplina.getNome().equals(nomeDisciplina));
-        System.out.println("Disciplina " + nomeDisciplina + " removida com sucesso.");
+        // Usa um booleano para verificar se alguma disciplina foi removida
+        boolean removida = disciplinas.removeIf(disciplina -> disciplina.getNome().equalsIgnoreCase(nomeDisciplina));
+        
+        if (removida) {
+            System.out.println("Disciplina " + nomeDisciplina + " removida com sucesso.");
+        } else {
+            System.out.println("Disciplina " + nomeDisciplina + " não encontrada.");
+        }
     }
+    
 
 }

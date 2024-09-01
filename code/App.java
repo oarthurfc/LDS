@@ -121,7 +121,7 @@ public class App {
                                 break;
 
                             case 3: // Visualizar Disciplinas
-                                System.out.print("Digite o nome do curso para ver as disciplinas: ");
+                                System.out.print("Digite o nome do curso para gerenciar as disciplinas: ");
                                 scanner.nextLine(); // Consome a linha
                                 String nomeCursoDisciplinas = scanner.nextLine();
                                 Curso curso = universidade.getCursos().stream()
