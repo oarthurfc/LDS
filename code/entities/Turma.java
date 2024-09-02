@@ -28,6 +28,7 @@ public class Turma implements Serializable {
             alunos.add(aluno);
             aluno.getTurmas().add(this);
             System.out.println("Aluno " + aluno.getNome() + " matriculado na turma " + numero + ".");
+            System.out.println("Sistema financeiro notificado.");
         } else {
             System.out.println("Não foi possível realizar a matrícula nessa disciplina, pois ela se encontra desativada");
         }
@@ -37,6 +38,7 @@ public class Turma implements Serializable {
         alunos.remove(aluno);
         aluno.getTurmas().remove(this);
         System.out.println("Aluno " + aluno.getNome() + " desmatriculado com successo da turma " + numero + " de " + disciplina.getNome() + ".");
+        System.out.println("Sistema financeiro notificado.");
     }
 
     public Disciplina getDisciplina() {
