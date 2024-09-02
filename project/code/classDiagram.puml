@@ -41,7 +41,6 @@ class Professor {
   -matricula: String
   -nome: String
   -CPF: String
-  -turmas: List<Turma>
   +visualizarAlunos(): List<Aluno>
 }
 
